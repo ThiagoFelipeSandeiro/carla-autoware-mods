@@ -35,3 +35,9 @@ docker ps | grep -Eo '([0-9]|[a-z]){12}' | xargs -I %% docker cp ~/carla-autowar
 
 # RUN THE EGOCAR SCRIPT
 docker ps | grep -Eo '([0-9]|[a-z]){12}' | xargs -I %% docker exec --user autoware -i %% bash /home/autoware/Documents/create_ego_car_csv.sh
+
+# MAKE SCRIPT EXECUTABLE
+docker ps | grep -Eo '([0-9]|[a-z]){12}' | xargs -I %% docker exec %% chmod +x /home/autoware/Documents/create_ego_car_csv.sh
+
+# RUN SCRIPT
+docker ps | grep -Eo '([0-9]|[a-z]){12}' | xargs -I %% docker exec --user autoware -i %% /home/autoware/Documents/create_ego_car_csv.sh
